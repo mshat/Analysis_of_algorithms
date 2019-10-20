@@ -33,7 +33,7 @@ def check_function(func):
             correct += test(args[0], args[1], int(args[2]), func)
 
     if test_n == correct:
-        print('\nТестирование пройдено успешно', correct, 'тестов из', test_n)
+        print('\nТестирование пройдено успешно,', correct, 'тестов из', test_n)
     else:
         print('\nВыполнено верно тестов', correct, 'из', test_n)
 

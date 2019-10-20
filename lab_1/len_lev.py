@@ -36,9 +36,3 @@ def lev_table(str1, str2, show=False):
             print_table(i - 1, prev_row, str1, str2)
 
     return prev_row[-1]
-
-
-str1, str2 = 'конь', 'лунар'
-str1, str2 = str2, str1
-
-print(lev_table(str1,str2, 1))

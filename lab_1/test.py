@@ -27,9 +27,10 @@ def check_function(func):
     print_table_header()
 
     for line in f:
-        test_n += 1
-        args = line.split(' ')
-        correct += test(args[0], args[1], int(args[2]), func)
+        if line[0] != '#':
+            test_n += 1
+            args = line.split(' ')
+            correct += test(args[0], args[1], int(args[2]), func)
 
     if test_n == correct:
         print('\nТестирование пройдено успешно', correct, 'тестов из', test_n)

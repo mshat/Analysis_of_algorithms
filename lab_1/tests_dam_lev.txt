@@ -1,0 +1,15 @@
+#empty
+  0
+#same
+р р 0
+#different
+ a 1
+a  1
+р с 1
+р рр 1
+сс р 2
+#damerau condition
+рст ртс 1
+рст срт 1
+ррст рртс 1
+###

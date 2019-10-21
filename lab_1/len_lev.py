@@ -57,8 +57,10 @@ def dam_lev_table(str1, str2, show=False):
             cur_num = min(prev_row[j] + 1,
                           prev_row[j - 1] + forfeit,
                           cur_row[j - 1] + 1)
-            #print('!', i, j, str1[i-1], str2[j-2], str1[i-2], str2[j-1])
-            if i + j > 3 and str1[i-1] == str2[j-2] and str1[i-2] == str2[j-1]:
+            if i > 1 and \
+               j > 1 and \
+               str1[i-1] == str2[j-2] and \
+               str1[i-2] == str2[j-1]:
                 cur_num = min(cur_num, prev_prev_row[j - 2] + 1)
             
             cur_row.append(cur_num)
@@ -72,7 +74,23 @@ def dam_lev_table(str1, str2, show=False):
 
     return prev_row[-1]
 
-str1, str2 = 'кот', 'ока'
+def dam_lev_rec(str1, str2):
+    len1, len2 = len(str1), len(str2)
+    if len1 * len2 == 0:
+        return abs(len1 - len2)
+    forfeit = 0 if str1[-1] == str2[-1] else 1
+    res = min(dam_lev_rec(str1, str2[:-1]) + 1,
+                  dam_lev_rec(str1[:-1], str2) + 1,
+                  dam_lev_rec(str1[:-1], str2[:-1]) + forfeit)
+    if len(str1) >= 2 and len(str2) >= 2 and \
+       str1[-1] == str2[-2] and str1[-2] == str2[-1]:
+        res = min(res, dam_lev_rec(str1[:-2], str2[:-2]) + 1)
+    return res
+    
+                   
+
+str1, str2 = 'абв', 'бав'
+#str1, str2 = 'коа', 'ока'
 #str1, str2 = str2, str1
-dam_lev_table(str1, str2, 1)
-lev_table(str1, str2, 1)
+#print(dam_lev_table(str1, str2, 0))
+dam_lev_rec(str1, str2)

@@ -1,21 +1,21 @@
 #юнит тестирование
 #замеры времени
 
-from len_lev import lev_table
-from len_lev import dam_lev_table
-from len_lev import dam_lev_rec
+from main import lev_table
+from main import dam_lev_table
+from main import dam_lev_rec
 from time import time
 from random import randint, choice
 import string
 
 def print_table_header():
     print('|string 1', '|', 'string 2', '|',
-          'incorrect result', '|', 'correct result', '|', 'passed', '|') 
+          'result', '|', 'correct result', '|', 'passed', '|') 
 
 def print_table_line(str1, str2, res, correct_res):
     passed = 'yes' if res == correct_res else 'NO!'
     print('|', str1.center(7), '|', str2.center(8), '|',
-              str(res).center(16), '|', str(correct_res).center(14), '|',
+              str(res).center(6), '|', str(correct_res).center(14), '|',
               passed.center(6), '|')
 
 def test(str1, str2, correct_res, func, show=True):
@@ -56,7 +56,7 @@ def random_string(size):
     return ''.join(choice(string.ascii_letters) for _ in range(size))
 
 def time_test(func, start_str_len=3, end_str_len = 9, len_step=1, tests_n=10):
-    print('\nТекстируемая функция: ', str(func))
+    print('\nТекстируемая функция: ', str(func)[10:-14])
     l = start_str_len
     while l <= end_str_len:
         print('Длина строки', l, 'Число тестов:', tests_n, end=' ')
@@ -72,9 +72,14 @@ def time_test(func, start_str_len=3, end_str_len = 9, len_step=1, tests_n=10):
 ##check_function(dam_lev_table, 'tests_dam_lev.txt')
 ##check_function(dam_lev_rec, 'tests_dam_lev.txt')
 
+##Замер времени работы алгоритмов
+##time_test(lev_table, 3, 9, 1, 10000)
+##time_test(dam_lev_table, 3, 9, 1, 10000)
+time_test(dam_lev_rec, 3, 9, 1, 100) 
+
 #Сравнение времени работы: lev table VS dam_lev_table    
-##time_test(lev_table, 10, 100, 10, 100)
-##time_test(dam_lev_table, 10, 100, 10, 100)
+#time_test(lev_table, 10, 100, 10, 100)
+#time_test(dam_lev_table, 10, 100, 10, 100)
 
 #Сравнение времени работы: dam_lev_table VS dam_lev_rec
 ##time_test(dam_lev_table, 3, 9, 1, 100)

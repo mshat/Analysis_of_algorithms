@@ -121,3 +121,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+*.toc
+*.gz
+*.synctex(busy)
+*.png
+*.tex
+*.aux
+*.dat
